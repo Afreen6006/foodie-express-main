@@ -8,10 +8,7 @@ The *Online Food Ordering System*(Foody) is a desktop app. It has a food orderin
 - Data stored in a MySQL database
 - Friendly user interface with JavaFX
 
-For screenshots [click here](https://winston-dsouza.github.io/#projects)
-
-![login](https://github.com/winston-dsouza/winston-dsouza.github.io/blob/master/images/food/Login.png)
-![menupage](https://github.com/winston-dsouza/winston-dsouza.github.io/blob/master/images/food/cart.png)
+For screenshots 
 
 ## Technologies
 - [Java](https://go.java/index.html) - widely used object-oriented language, the core of our system
@@ -30,6 +27,3 @@ For screenshots [click here](https://winston-dsouza.github.io/#projects)
 3. Download the project of the application and open it in **NetBeans**.
 4. Connect with the database in the Services tab under **MySQL Server(localhost)**. The MySQL **JDBC driver** is embedded in the project.
 5. Enter your server properties(**Host Name, Port Number, Admin UserName/Password**).
-
-*Note The [Foody](https://github.com/winston-dsouza/Online-Food-Ordering-System/tree/master/Foody) folder is Food Ordering App and 
-[FoodyOrder](https://github.com/winston-dsouza/Online-Food-Ordering-System/tree/master/FoodyOrder) folder is order retrieve App code*
