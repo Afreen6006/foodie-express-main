@@ -9,6 +9,14 @@ The *Online Food Ordering System*(Foody) is a desktop app. It has a food orderin
 - Friendly user interface with JavaFX
 
 For screenshots 
+<img width="1280" height="587" alt="image" src="https://github.com/user-attachments/assets/2bcb12c8-93b0-4f80-b73f-bb28f6ad15fd" />
+<img width="1280" height="641" alt="image" src="https://github.com/user-attachments/assets/27d36be8-5eb1-4f9f-aa2f-874debdc6df2" />
+<img width="1280" height="501" alt="image" src="https://github.com/user-attachments/assets/c51282d3-14f7-40c0-bd23-bff9bbeb5962" />
+<img width="1280" height="540" alt="image" src="https://github.com/user-attachments/assets/2eba30bc-3597-486c-9adc-ecead1c3fbd2" />
+<img width="1280" height="540" alt="image" src="https://github.com/user-attachments/assets/69b7a795-8306-4473-bca2-869afaab20b4" />
+<img width="1261" height="820" alt="image" src="https://github.com/user-attachments/assets/d7af9eb5-c43b-4cd0-8598-e6217da8d4d6" />
+<img width="1280" height="587" alt="image" src="https://github.com/user-attachments/assets/1fe48afc-dc80-4d2d-9ff4-03b33a90df55" />
+<img width="1280" height="822" alt="image" src="https://github.com/user-attachments/assets/4f47e72e-7e17-4e0e-bbf3-f0422fa1d288" />
 
 ## Technologies
 - [Java](https://go.java/index.html) - widely used object-oriented language, the core of our system
