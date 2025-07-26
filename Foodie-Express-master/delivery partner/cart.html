@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delivery Partner - Assigned Cart</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f0f4f8 0%, #d9e4f5 100%);
+      color: #1a202c;
+    }
+
+    .container {
+      display: flex;
+    }
+
+    .sidebar {
+      width: 240px;
+      background: linear-gradient(180deg, #2d3748 0%, #4a5568 100%);
+      height: 100vh;
+      padding: 20px;
+      box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .sidebar .logo img {
+      height: 36px;
+      border-radius: 50%;
+      
+    }
+
+    .sidebar .logo h1 {
+      font-size: 1.2rem;
+      color: #edf2f7;
+    }
+
+    .sidebar nav a {
+      display: block;
+      color: #a0aec0;
+      text-decoration: none;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    .sidebar nav a:hover,
+    .sidebar nav a.active {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #48bb78;
+    }
+
+    .main {
+      flex: 1;
+      padding: 40px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+
+    .cart-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .cart-item {
+      background: #fff;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: transform 0.2s;
+    }
+
+    .cart-item:hover {
+      transform: translateY(-4px);
+    }
+
+    .cart-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart-info h4 {
+      margin: 0;
+      font-size: 1.2rem;
+      color: #2d3748;
+    }
+
+    .cart-info p {
+      margin: 5px 0;
+      font-size: 0.95rem;
+      color: #4a5568;
+    }
+
+    .btn-complete {
+      background-color: #48bb78;
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn-complete:hover {
+      background-color: #38a169;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="logo1.jpg" alt="Logo">
+        <h1>Foodie Express</h1>
+      </div>
+      <nav>
+        <a href="home.html">Home</a>
+        <a href="order-history.html">Order History</a>
+        <a href="earnings.html">Earnings</a>
+        <a href="deliverypartner.html">Delivery Panel</a>
+        <a href="profile.html">Profile</a>
+        <a href="cart.html" class="active">Assigned Cart</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <h2>Assigned Delivery Orders</h2>
+      <div class="cart-list" id="cartList"></div>
+    </main>
+  </div>
+
+  <script>
+    const cartList = document.getElementById('cartList');
+
+    // Default sample data
+    const defaultOrders = [
+      {
+        id: 'FDX2042',
+        from: 'Satkar Restaurant',
+        to: 'Rajendra Nagar, MP',
+        items: 'Veg Biryani x1, Paneer Butter Masala x2',
+        status: 'assigned'
+      },
+      {
+        id: 'FDX2043',
+        from: 'Jai Ganesh Bhojnalaya',
+        to: 'Civil Lines, MP',
+        items: 'Idly x2, Dosa x1',
+        status: 'assigned'
+      }
+    ];
+
+    // Load from localStorage or set default
+    let orders = JSON.parse(localStorage.getItem("assignedOrders")) || defaultOrders;
+
+    const renderCart = () => {
+      cartList.innerHTML = '';
+
+      orders.forEach((order, index) => {
+        const card = document.createElement('div');
+        card.className = 'cart-item';
+        card.innerHTML = `
+          <div class="cart-info">
+            <h4>Order #${order.id}</h4>
+            <p>From: ${order.from}</p>
+            <p>To: ${order.to}</p>
+            <p>Items: ${order.items}</p>
+          </div>
+          <button class="btn-complete" ${order.status === 'picked' ? 'disabled' : ''}>
+            ${order.status === 'picked' ? 'Picked ✅' : 'Mark as Picked'}
+          </button>
+        `;
+
+        const btn = card.querySelector('button');
+        btn.addEventListener('click', () => {
+          orders[index].status = 'picked';
+          localStorage.setItem("assignedOrders", JSON.stringify(orders));
+          renderCart();
+        });
+
+        cartList.appendChild(card);
+      });
+    };
+
+    renderCart();
+  </script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Menu - Restaurant Panel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 40px;
+      background: linear-gradient(to right, #1a1c2e, #4a4065);
+      color: #fff;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #ffcb6b;
+    }
+
+    .menu-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .menu-controls input {
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+      width: 250px;
+    }
+
+    .menu-controls button {
+      background: linear-gradient(to right, #ffcb6b, #ff9f43);
+      color: #1a1a1a;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .menu-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .dish {
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+
+    .dish img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .dish h3 {
+      margin: 5px 0;
+    }
+
+    .dish p {
+      font-size: 14px;
+      color: #ddd;
+    }
+
+    .dish button {
+      margin-top: 10px;
+      padding: 8px 12px;
+      margin-right: 8px;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .edit {
+      background: #ffd700;
+      color: #000;
+    }
+
+    .delete {
+      background: #ff5a5f;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <h1>📋 Manage Menu</h1>
+
+  <div class="menu-controls">
+    <input type="text" id="search" placeholder="Search dishes...">
+    <button onclick="addNewDish()">➕ Add Dish</button>
+  </div>
+
+  <div class="menu-list" id="menuList"></div>
+
+  <script>
+    let dishes = JSON.parse(localStorage.getItem("restaurantMenu")) || [
+      {
+        name: "Paneer Butter Masala",
+        price: 180,
+        image: "paneer.jpg"
+      },
+      {
+        name: "Veg Biryani",
+        price: 150,
+        image: "vegbriyani.jpg"
+      },
+      {
+        name: "Cheese Burst Pizza",
+        price: 220,
+        image: "cheeseburst.jpg"
+      }
+    ];
+
+    const list = document.getElementById('menuList');
+    const search = document.getElementById('search');
+
+    function saveToLocal() {
+      localStorage.setItem("restaurantMenu", JSON.stringify(dishes));
+    }
+
+    function renderMenu() {
+      const filtered = dishes.filter(d => d.name.toLowerCase().includes(search.value.toLowerCase()));
+      list.innerHTML = filtered.map(dish => `
+        <div class="dish">
+          <img src="${dish.image}" alt="${dish.name}" onerror="this.src='https://i.imgur.com/4rmwPXA.jpg'">
+          <h3>${dish.name}</h3>
+          <p>₹${dish.price}</p>
+          <button class="edit" onclick="editDish('${dish.name}')">Edit</button>
+          <button class="delete" onclick="deleteDish('${dish.name}')">Delete</button>
+        </div>
+      `).join('');
+    }
+
+    function deleteDish(name) {
+      const index = dishes.findIndex(d => d.name === name);
+      if (index !== -1) {
+        dishes.splice(index, 1);
+        saveToLocal();
+        renderMenu();
+      }
+    }
+
+    function editDish(name) {
+      const index = dishes.findIndex(d => d.name === name);
+      if (index !== -1) {
+        const newName = prompt("Enter New Dish Name", dishes[index].name);
+        const newPrice = prompt("Enter New Price", dishes[index].price);
+        const newImage = prompt("Enter New Image URL", dishes[index].image);
+        if (newName && newPrice) {
+          dishes[index] = {
+            name: newName,
+            price: parseInt(newPrice),
+            image: newImage
+          };
+          saveToLocal();
+          renderMenu();
+        }
+      }
+    }
+
+    function addNewDish() {
+      const name = prompt("Enter Dish Name");
+      const price = prompt("Enter Price");
+      const image = prompt("Enter Image URL");
+      if (name && price) {
+        dishes.push({ name, price: parseInt(price), image });
+        saveToLocal();
+        renderMenu();
+      }
+    }
+
+    search.addEventListener("input", renderMenu);
+    renderMenu();
+  </script>
+</body>
+</html>

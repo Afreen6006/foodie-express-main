@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Customer Panel - Foodie Express</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: linear-gradient(to right, #1a1c2e, #4a4065);
+      color: #fff;
+      padding: 40px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: #ffcb6b;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      color: #ddd;
+      font-size: 1rem;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 25px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+    }
+
+    .card h2 {
+      color: #ff9f43;
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #ccc;
+    }
+
+    .card a {
+      display: inline-block;
+      margin-top: 14px;
+      background: linear-gradient(to right, #ff9f43, #ffcb6b);
+      color: #1a1c2e;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .card a:hover {
+      background: linear-gradient(to right, #ffc26b, #ffe08a);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>👤 Customer Panel</h1>
+    <p>Welcome back! Here’s your personalized dashboard.</p>
+  </header>
+
+  <section class="dashboard">
+    <div class="card">
+      <h2>🍔 View Menu</h2>
+      <p>Explore dishes and add your favorites to the cart.</p>
+      <a href="menu.html">Browse Menu</a>
+    </div>
+
+    <div class="card">
+      <h2>🛒 Your Cart</h2>
+      <p>Check your selected items and place an order.</p>
+      <a href="cart.html">Go to Cart</a>
+    </div>
+
+    <div class="card">
+      <h2>📜 Order History</h2>
+      <p>Track past orders and reorder your favorites.</p>
+      <a href="order-history.html">View Orders</a>
+    </div>
+
+    <div class="card">
+      <h2>👤 Edit Profile</h2>
+      <p>Update your name, email or contact details.</p>
+      <a href="profile.html">Manage Profile</a>
+    </div>
+  </section>
+</body>
+</html>

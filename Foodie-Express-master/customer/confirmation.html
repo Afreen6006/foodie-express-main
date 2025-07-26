@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Order Confirmed - Foodie Express</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    :root {
+      --primary: #fc8019;
+      --success: #22c55e;
+      --background: linear-gradient(135deg, #1f1c2c 0%, #928dab 100%);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --text-light: #f3f3f3;
+      --text-muted: #ddd;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      --border: rgba(255, 255, 255, 0.2);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--background);
+      color: var(--text-light);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    .confirmation-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(15px);
+      border-radius: 25px;
+      box-shadow: var(--shadow);
+      padding: 40px 30px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      animation: zoomIn 0.5s ease;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .emoji {
+      font-size: 60px;
+      margin-bottom: 10px;
+      animation: pop 0.4s ease;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0); }
+      80% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    h1 {
+      color: var(--success);
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .details {
+      font-size: 16px;
+      color: var(--text-muted);
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+
+    .thumb-img {
+      width: 100px;
+      margin-bottom: 20px;
+      animation: bounce 1s ease infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .tracking-bar {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px 0;
+      position: relative;
+    }
+
+    .tracking-bar::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 10%;
+      width: 80%;
+      height: 4px;
+      background: var(--text-muted);
+      z-index: 0;
+      transform: translateY(-50%);
+    }
+
+    .tracking-step {
+      z-index: 1;
+      background-color: var(--glass-bg);
+      color: var(--text-light);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 10px;
+      border-radius: 8px;
+      position: relative;
+      transition: all 0.4s ease;
+    }
+
+    .tracking-step.active {
+      background-color: var(--success);
+      color: #000;
+      box-shadow: 0 0 0 3px var(--background);
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .buttons a {
+      display: inline-block;
+      padding: 12px 20px;
+      background-color: var(--primary);
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 12px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      animation: pulse 1.5s infinite;
+    }
+
+    .buttons a:hover {
+      background-color: #e07f2a;
+      transform: translateY(-2px);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(252,128,25, 0.4); }
+      70% { transform: scale(1.05); box-shadow: 0 0 0 12px rgba(252,128,25, 0); }
+      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(252,128,25, 0); }
+    }
+
+    @media (max-width: 500px) {
+      .confirmation-card {
+        padding: 30px 20px;
+      }
+
+      .emoji {
+        font-size: 48px;
+      }
+
+      .thumb-img {
+        width: 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="confirmation-card">
+    <div class="emoji">🎉</div>
+    <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" alt="Thumbs Up" class="thumb-img">
+    <h1>Order Confirmed!</h1>
+    <div class="details" id="orderDetails">Preparing your order...</div>
+
+    <div class="tracking-bar">
+      <div class="tracking-step active">Order Placed</div>
+      <div class="tracking-step">Preparing</div>
+      <div class="tracking-step">On the Way</div>
+      <div class="tracking-step">Delivered</div>
+    </div>
+
+    <div class="buttons">
+      <a href="order-history.html">View Order History</a>
+      <a href="home.html">Continue Shopping</a>
+    </div>
+  </div>
+
+  <script>
+    const showConfetti = () => {
+      const end = Date.now() + 2 * 1000;
+      const interval = setInterval(() => {
+        if (Date.now() > end) return clearInterval(interval);
+        confetti({
+          particleCount: 60,
+          spread: 70,
+          origin: { x: Math.random(), y: Math.random() * 0.6 }
+        });
+      }, 200);
+    };
+    showConfetti();
+
+    const order = JSON.parse(localStorage.getItem("lastOrder") || "null");
+
+    if (order) {
+      const restaurant = order.items[0]?.restaurant || "your favorite restaurant";
+      const eta = order.eta;
+      document.getElementById("orderDetails").innerHTML = `
+        Thanks for ordering from <strong>${restaurant}</strong>!<br>
+        Your delicious meal will be delivered in <strong>${eta}</strong> 🚚🍔
+      `;
+      localStorage.removeItem("lastOrder");
+
+      const steps = document.querySelectorAll(".tracking-step");
+      let currentStep = 1;
+      const interval = setInterval(() => {
+        if (currentStep < steps.length) {
+          steps[currentStep].classList.add("active");
+          currentStep++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 2000);
+    } else {
+      document.getElementById("orderDetails").innerHTML = `
+        No recent order found. Go back to <a href="home.html" style="color: var(--primary); text-decoration: underline;">Home</a>.
+      `;
+    }
+  </script>
+
+</body>
+</html>

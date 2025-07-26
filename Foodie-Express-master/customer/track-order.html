@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Track Order - Foodie Express</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1f1c2c 0%, #928dab 100%);
+      color: #fff;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .tracking-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(12px);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #fc8019;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 14px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: #fc8019;
+    }
+
+    .step {
+      position: relative;
+      margin-bottom: 30px;
+    }
+
+    .step:last-child {
+      margin-bottom: 0;
+    }
+
+    .step::before {
+      content: "";
+      position: absolute;
+      left: -2px;
+      top: 3px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #fff;
+      border: 3px solid #fc8019;
+    }
+
+    .step.completed::before {
+      background: #22c55e;
+      border-color: #22c55e;
+    }
+
+    .step .label {
+      margin-left: 20px;
+      font-size: 16px;
+      color: #ddd;
+    }
+
+    .step.completed .label {
+      color: #22c55e;
+      font-weight: bold;
+    }
+
+    .back-btn {
+      display: block;
+      margin: 30px auto 0;
+      padding: 12px 20px;
+      background: #fc8019;
+      color: #1f1c2c;
+      font-weight: 600;
+      text-align: center;
+      border-radius: 10px;
+      text-decoration: none;
+      width: fit-content;
+    }
+
+    .back-btn:hover {
+      background: #e07f2a;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="tracking-container">
+    <h2>Order Tracking</h2>
+    <div class="timeline" id="timeline">
+      <div class="step completed"><div class="label">Order Confirmed</div></div>
+      <div class="step"><div class="label">Preparing Food</div></div>
+      <div class="step"><div class="label">Out for Delivery</div></div>
+      <div class="step"><div class="label">Delivered</div></div>
+    </div>
+    <a href="order-history.html" class="back-btn">Back to Orders</a>
+  </div>
+
+  <script>
+    const steps = document.querySelectorAll('.step');
+    let current = 1;
+
+    function simulateProgress() {
+      if (current < steps.length) {
+        steps[current].classList.add('completed');
+        current++;
+        setTimeout(simulateProgress, 3000); // Update every 3 sec
+      }
+    }
+
+    // Start simulation after 2 sec
+    setTimeout(simulateProgress, 2000);
+  </script>
+
+</body>
+</html>

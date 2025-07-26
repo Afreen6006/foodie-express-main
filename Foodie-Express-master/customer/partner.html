@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join Foodie Express - Partner & Careers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ffcb6b;
+      --secondary: #ff9f43;
+      --accent: #ff5a5f;
+      --bg: linear-gradient(135deg, #1a1c2e 0%, #4a4065 70%);
+      --card-bg: rgba(255, 255, 255, 0.12);
+      --text: #ffffff;
+      --muted: #ddd;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      --border: rgba(255, 255, 255, 0.2);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+    }
+
+    .container {
+      max-width: 960px;
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 50px;
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      text-align: center;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: 38px;
+      margin-bottom: 35px;
+      color: var(--primary);
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section h2 {
+      font-size: 26px;
+      color: var(--secondary);
+      margin-bottom: 15px;
+    }
+
+    .section p {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .highlight {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .email-box {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 12px 20px;
+      border-radius: 12px;
+      display: inline-block;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: 10px;
+      user-select: all;
+    }
+
+    .action-btn {
+      display: inline-block;
+      padding: 14px 28px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      color: #1a1c2e;
+      font-weight: 600;
+      font-size: 16px;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      margin: 15px 8px 0;
+    }
+
+    .action-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 30px 20px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Join Foodie Express</h1>
+
+    <div class="section">
+      <h2>🚀 Partner With Us</h2>
+      <p>
+        Ready to take your food business to the next level? <span class="highlight">Join our movement</span> and bring your culinary magic to millions across India. Whether you’re a cozy café or a cloud kitchen, we’re here to help you grow.
+      </p>
+      <div class="email-box">📧 partner@foodieexpress.com</div>
+      <br>
+      <button class="action-btn" onclick="alert('Thank you! We will contact you shortly.')">Become a Partner</button>
+      <button class="action-btn" onclick="alert('Let’s connect! Message sent.')">Send a Message</button>
+    </div>
+
+    <div class="section">
+      <h2>💼 Careers</h2>
+      <p>
+        We're more than just food delivery. <span class="highlight">We're delivering joy</span> and shaping the future of food tech. Be part of our growing team in tech, marketing, logistics, and beyond. Let’s build something incredible together!
+      </p>
+      <div class="email-box">📧 jobs@foodieexpress.com</div>
+      <br>
+      <button class="action-btn" onclick="alert('We’ll notify you when jobs open up.')">Explore Careers</button>
+      <button class="action-btn" onclick="alert('Let’s connect and grow together!')">Send a Message</button>
+    </div>
+  </div>
+</body>
+</html>

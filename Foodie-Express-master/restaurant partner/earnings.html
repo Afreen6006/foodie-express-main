@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Earnings - Restaurant Panel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 40px;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #1a1c2e, #4a4065);
+      color: #fff;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffcb6b;
+      margin-bottom: 30px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .earnings-summary {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .card {
+      flex: 1;
+      min-width: 260px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      backdrop-filter: blur(8px);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h2 {
+      color: #ff9f43;
+      margin-bottom: 10px;
+    }
+
+    .card .amount {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #48bb78;
+    }
+
+    .card .desc {
+      font-size: 0.95rem;
+      color: #ddd;
+      margin-top: 8px;
+    }
+
+    .chart {
+      margin-top: 40px;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 20px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 14px;
+      text-align: center;
+      color: #aaa;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <h1>💰 Weekly Earnings</h1>
+
+  <div class="earnings-summary">
+    <div class="card">
+      <h2>Total Earnings</h2>
+      <div class="amount">₹12,500</div>
+      <div class="desc">This week total</div>
+    </div>
+
+    <div class="card">
+      <h2>Orders Completed</h2>
+      <div class="amount">42</div>
+      <div class="desc">Number of orders delivered</div>
+    </div>
+
+    <div class="card">
+      <h2>Average Per Order</h2>
+      <div class="amount">₹297</div>
+      <div class="desc">Based on completed orders</div>
+    </div>
+  </div>
+
+  <div class="chart">
+    📊 Weekly earnings chart coming soon...
+  </div>
+</body>
+</html>

@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help & Support - Foodie Express</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #221c3d;
+      color: #f5f5f5;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 2rem;
+      background: #2f254b;
+      border-radius: 18px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      color: #fecd56;
+      margin-bottom: 20px;
+      text-align: center;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+    }
+
+    .support-info {
+      background: linear-gradient(to right, #ff5f6d, #ffc371);
+      padding: 1rem;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 2rem;
+      font-weight: 600;
+      animation: fadeSlide 0.5s ease;
+    }
+
+    .card {
+      background: #3c2f62;
+      padding: 1.5rem;
+      border-radius: 14px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .card h2 {
+      color: #fecd56;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #ddd;
+      line-height: 1.6;
+    }
+
+    .contact-buttons {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .contact-buttons button {
+      background: #ff7b54;
+      border: none;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      margin: 0.5rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .contact-buttons button:hover {
+      background: #ff5c3c;
+    }
+
+    @keyframes fadeSlide {
+      from {
+        transform: translateY(-15px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .contact-buttons button {
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>🛎️ Help & Support</h1>
+
+    <div class="support-info">
+      📞 24/7 Customer Care | Email us at <strong>support@foodieexpress.com</strong>
+    </div>
+
+    <div class="card">
+      <h2>🍽️ Order Issues</h2>
+      <p>Need help with a late delivery, incorrect order or refund? We’re here to resolve your issue fast.</p>
+    </div>
+
+    <div class="card">
+      <h2>🤝 Partner & Feedback</h2>
+      <p>If you're a restaurant partner or want to give feedback about our app experience, please reach out.</p>
+    </div>
+
+    <div class="card">
+      <h2>📍 Address or Payment Issues</h2>
+      <p>Unable to update your address or payment details? Our support team can guide you step-by-step.</p>
+    </div>
+
+    <div class="contact-buttons">
+      <button onclick="window.location.href='mailto:support@foodieexpress.com'">📧 Email Support</button>
+      <button onclick="window.location.href='tel:1800-FOODIE'">📞 Call 1800-FOODIE</button>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meet Our Team - Foodie Express</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ffcb6b;
+      --secondary: #ff9f43;
+      --accent: #ff5a5f;
+      --bg: linear-gradient(135deg, #1a1c2e 0%, #4a4065 70%);
+      --card-bg: rgba(255, 255, 255, 0.12);
+      --text: #ffffff;
+      --muted: #ddd;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      --border: rgba(255, 255, 255, 0.2);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--primary);
+      font-size: 38px;
+      margin-bottom: 40px;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .team-card {
+      background: var(--card-bg);
+      border-radius: 18px;
+      padding: 20px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .team-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+    }
+
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      object-fit: cover;
+      border: 2px solid var(--primary);
+    }
+
+    .team-name {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .team-role {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>🌟 Meet Our Dream Team</h1>
+  <div class="team-grid">
+  <div class="team-card">
+    <img src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png" alt="Girl Avatar" class="avatar">
+    <div class="team-name">Anika Sharma</div>
+    <div class="team-role">Co-Founder & CEO</div>
+  </div>
+  <div class="team-card">
+    <img src="https://cdn-icons-png.flaticon.com/512/4140/4140047.png" alt="Boy Avatar" class="avatar">
+    <div class="team-name">Ravi Menon</div>
+    <div class="team-role">CTO</div>
+  </div>
+  <div class="team-card">
+    <img src="https://cdn-icons-png.flaticon.com/512/4140/4140060.png" alt="Girl Avatar" class="avatar">
+    <div class="team-name">Sonal Mehta</div>
+    <div class="team-role">Marketing Lead</div>
+  </div>
+  <div class="team-card">
+    <img src="https://cdn-icons-png.flaticon.com/512/4140/4140051.png" alt="Boy Avatar" class="avatar">
+    <div class="team-name">Karan Patel</div>
+    <div class="team-role">Operations Manager</div>
+  </div>
+  <div class="team-card">
+    <img src="https://cdn-icons-png.flaticon.com/512/4140/4140057.png" alt="Girl Avatar" class="avatar">
+    <div class="team-name">Meera Iyer</div>
+    <div class="team-role">UX Designer</div>
+  </div>
+  <div class="team-card">
+    <img src="https://cdn-icons-png.flaticon.com/512/4140/4140061.png" alt="Boy Avatar" class="avatar">
+    <div class="team-name">Deepak Kumar</div>
+    <div class="team-role">Product Manager</div>
+  </div>
+  <div class="team-card">
+    <img src="https://cdn-icons-png.flaticon.com/512/4140/4140046.png" alt="Girl Avatar" class="avatar">
+    <div class="team-name">Priya Raj</div>
+    <div class="team-role">Customer Success</div>
+  </div>
+  <div class="team-card">
+    <img src="https://cdn-icons-png.flaticon.com/512/4140/4140053.png" alt="Boy Avatar" class="avatar">
+    <div class="team-name">Aman Khan</div>
+    <div class="team-role">Delivery Head</div>
+  </div>
+</div>
+
+</body>
+</html>

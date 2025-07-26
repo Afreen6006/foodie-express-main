@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delivery Partner Dashboard</title>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f0f4f8 0%, #d9e4f5 100%);
+      color: #1a202c;
+      overflow-x: hidden;
+    }
+
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 240px;
+      background: linear-gradient(180deg, #2d3748 0%, #4a5568 100%);
+      box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      height: 100%;
+      transition: transform 0.3s ease;
+      z-index: 20;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 30px;
+      margin-left: 240px;
+      overflow-y: auto;
+    }
+
+    #map {
+      width: 100%;
+      height: 350px;
+      margin-top: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="logo1.jpg" alt="Logo" style="height: 36px; border-radius: 50%;">
+        <h1 style="color: #fff;">Foodie Express</h1>
+      </div>
+      <nav>
+        <ul style="list-style: none; padding: 0; margin-top: 20px;">
+          <li><a href="#" style="color: #fff; text-decoration: none; display: block; padding: 10px 20px;">Dashboard</a></li>
+          <li><a href="#" style="color: #fff; text-decoration: none; display: block; padding: 10px 20px;">Active Orders</a></li>
+          <li><a href="#" style="color: #fff; text-decoration: none; display: block; padding: 10px 20px;">Order History</a></li>
+          <li><a href="#" style="color: #fff; text-decoration: none; display: block; padding: 10px 20px;">Earnings</a></li>
+          <li><a href="#" style="color: #fff; text-decoration: none; display: block; padding: 10px 20px;">Profile</a></li>
+          <li><a href="#" onclick="logoutUser()" style="color: #fff; text-decoration: none; display: block; padding: 10px 20px;">Logout</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+        <h2>Delivery Partner Dashboard</h2>
+        <div class="header-right" style="display: flex; align-items: center; gap: 20px;">
+          <div class="mini-map">Live Route</div>
+          <div class="profile" style="display: flex; align-items: center; gap: 10px;">
+            <img src="images.png" alt="Profile" style="height: 36px; width: 36px; border-radius: 50%;">
+            <span>John Doe</span>
+            <span class="notification-badge" style="background-color: #f56565; color: #fff; font-size: 0.7rem; padding: 4px 8px; border-radius: 50%;">3</span>
+          </div>
+        </div>
+      </header>
+
+      <h3 style="font-weight: 600; margin-bottom: 10px;">📍 Live Location Tracking</h3>
+      <div id="map"></div>
+    </main>
+  </div>
+
+  <script>
+    const toggleSidebar = document.getElementById('toggleSidebar');
+    const sidebar = document.querySelector('.sidebar');
+    if(toggleSidebar){
+      toggleSidebar.addEventListener('click', () => {
+        sidebar.classList.toggle('active');
+      });
+    }
+
+    function logoutUser() {
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('user');
+      alert('You have been logged out!');
+      window.location.href = 'login.html';
+    }
+
+    const map = L.map('map').setView([20.5937, 78.9629], 5);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+    let marker;
+
+    function updateLocation(position) {
+      const lat = position.coords.latitude;
+      const lng = position.coords.longitude;
+
+      if (marker) {
+        marker.setLatLng([lat, lng]);
+      } else {
+        marker = L.marker([lat, lng]).addTo(map).bindPopup("Your Location").openPopup();
+      }
+      map.setView([lat, lng], 15);
+    }
+
+    function errorHandler(error) {
+      alert("Geolocation error: " + error.message);
+    }
+
+    if (navigator.geolocation) {
+      navigator.geolocation.watchPosition(updateLocation, errorHandler, {
+        enableHighAccuracy: true,
+        maximumAge: 10000,
+        timeout: 5000
+      });
+    } else {
+      alert("Geolocation is not supported by your browser");
+    }
+  </script>
+</body>
+</html>

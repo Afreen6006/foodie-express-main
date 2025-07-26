@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Applications - Foodie Express Careers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #1a1c2e, #4a4065);
+      color: #fff;
+      padding: 50px 20px;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffcb6b;
+      margin-bottom: 40px;
+      font-size: 2rem;
+    }
+
+    .application-list {
+      max-width: 800px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .application-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 0.4s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .application-card h3 {
+      color: #ffcb6b;
+      margin-bottom: 8px;
+    }
+
+    .application-card p {
+      margin: 4px 0;
+      font-size: 0.95rem;
+    }
+
+    .application-card .message {
+      background: rgba(255,255,255,0.06);
+      padding: 10px;
+      border-radius: 10px;
+      margin-top: 10px;
+      color: #ddd;
+    }
+
+    .empty-msg {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #ccc;
+      margin-top: 100px;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin: 20px auto;
+      text-align: center;
+      background: rgba(255,255,255,0.1);
+      padding: 10px 20px;
+      color: #ffcb6b;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .back-btn:hover {
+      background: rgba(255,255,255,0.2);
+    }
+  </style>
+</head>
+<body>
+  <h1>📂 Submitted Applications</h1>
+
+  <div class="application-list" id="applicationList"></div>
+
+  <p class="empty-msg" id="emptyMessage" style="display: none;">No applications found yet.</p>
+
+  <div style="text-align: center;">
+    <a href="apply.html" class="back-btn">⬅ Back to Apply Page</a>
+  </div>
+
+  <script>
+    const applications = JSON.parse(localStorage.getItem("careerApplications") || "[]");
+    const list = document.getElementById("applicationList");
+    const empty = document.getElementById("emptyMessage");
+
+    if (applications.length === 0) {
+      empty.style.display = "block";
+    } else {
+      applications.reverse().forEach(app => {
+        const card = document.createElement("div");
+        card.className = "application-card";
+        card.innerHTML = `
+          <h3>👤 ${app.name}</h3>
+          <p><strong>Role:</strong> ${app.role}</p>
+          <p><strong>Email:</strong> ${app.email}</p>
+          <p><strong>Phone:</strong> ${app.phone}</p>
+          <p><strong>Submitted on:</strong> ${app.date}</p>
+          <div class="message"><strong>Message:</strong><br>${app.message}</div>
+        `;
+        list.appendChild(card);
+      });
+    }
+  </script>
+</body>
+</html>

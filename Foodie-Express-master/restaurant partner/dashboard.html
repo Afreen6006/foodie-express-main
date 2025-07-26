@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #1f1c2c, #928dab);
+      color: #fff;
+    }
+    .container {
+      display: flex;
+    }
+    .sidebar {
+      width: 250px;
+      background: #2d3748;
+      height: 100vh;
+      padding: 20px;
+      box-shadow: 4px 0 12px rgba(0, 0, 0, 0.3);
+    }
+    .sidebar h2 {
+      color: #ffcb6b;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .sidebar a {
+      display: block;
+      padding: 14px 20px;
+      margin-bottom: 12px;
+      color: #cbd5e0;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 500;
+      transition: background 0.3s, color 0.3s;
+    }
+    .sidebar a:hover {
+      background: #4a5568;
+      color: #ffcb6b;
+    }
+    .main {
+      flex: 1;
+      padding: 40px;
+      background: linear-gradient(to bottom right, #2c2e3e, #494a5a);
+      min-height: 100vh;
+    }
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+    .dashboard-header h1 {
+      font-size: 30px;
+      color: #ffcb6b;
+    }
+    .dashboard-header p {
+      font-size: 16px;
+      color: #ccc;
+    }
+    .logout-btn {
+      background: linear-gradient(to right, #ffcb6b, #ff9f43);
+      color: #1a1c2e;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .logout-btn:hover {
+      background: linear-gradient(to right, #e0b54a, #e07f2a);
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
+    }
+    .card h3 {
+      margin-bottom: 14px;
+      font-size: 22px;
+      color: #ff9f43;
+    }
+    .card p {
+      font-size: 18px;
+      font-weight: 500;
+      color: #ffffff;
+    }
+    .order-card {
+      background: rgba(0, 0, 0, 0.25);
+      padding: 14px;
+      border-left: 5px solid #ffcb6b;
+      margin-top: 12px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    .order-card p {
+      margin: 5px 0;
+      font-size: 15px;
+      color: #eee;
+    }
+    .chart-container {
+      margin-top: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+    canvas {
+      background-color: #fff;
+      border-radius: 10px;
+    }
+    @media (max-width: 768px) {
+      .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      .sidebar {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <h2>🍽️ Restaurant</h2>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="menu.html">Manage Menu</a>
+      <a href="orders.html">Orders</a>
+      <a href="earnings.html">Earnings</a>
+      <a href="profile.html">Profile</a>
+      <a href="../customer/home.html">Customer Panel</a>
+      <a href="reviews.html">Reviews</a>
+      <a href="#" onclick="logoutUser()">Logout</a>
+    </aside>
+    <main class="main">
+      <div class="dashboard-header">
+        <h1>Welcome, Partner!</h1>
+        <div>
+          <p>📅 Today: <span id="date"></span></p>
+          <button class="logout-btn" onclick="logoutUser()">Logout</button>
+        </div>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Total Orders Today</h3>
+          <p id="totalOrders">-- Orders</p>
+        </div>
+        <div class="card">
+          <h3>Total Earnings</h3>
+          <p id="totalEarnings">₹--</p>
+        </div>
+        <div class="card">
+          <h3>Top Dish</h3>
+          <p id="topDish">Loading...</p>
+        </div>
+        <div class="card">
+          <h3>Pending Orders</h3>
+          <div id="orderList"></div>
+        </div>
+      </div>
+      <div class="chart-container">
+        <h3 style="color:#ffcb6b; margin-bottom:10px;">Top Dishes This Week</h3>
+        <canvas id="dishChart" height="100"></canvas>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById("date").textContent = new Date().toDateString();
+
+    function logoutUser() {
+      localStorage.removeItem('isLoggedIn');
+      localStorage.removeItem('user');
+      alert('You have been logged out!');
+      window.location.href = 'login.html';
+    }
+
+    const orders = [
+      { id: 1023, items: ["Dosa", "Idly"], status: "Preparing", earning: 120 },
+      { id: 1024, items: ["Veg Biryani"], status: "Awaiting Pickup", earning: 180 },
+      { id: 1025, items: ["Paneer Butter Masala"], status: "Delivered", earning: 220 },
+    ];
+
+    const orderList = document.getElementById("orderList");
+    const totalOrders = document.getElementById("totalOrders");
+    const totalEarnings = document.getElementById("totalEarnings");
+    const topDish = document.getElementById("topDish");
+
+    let earnings = 0;
+    let dishMap = {};
+
+    orders.forEach(order => {
+      if (order.status !== "Delivered") {
+        const div = document.createElement("div");
+        div.className = "order-card";
+        div.innerHTML = `
+          <p><strong>Order #${order.id}</strong></p>
+          <p>${order.items.map(i => `1x ${i}`).join(", ")}</p>
+          <p>Status: ${order.status}</p>
+        `;
+        orderList.appendChild(div);
+      }
+
+      earnings += order.earning;
+      order.items.forEach(dish => {
+        dishMap[dish] = (dishMap[dish] || 0) + 1;
+      });
+    });
+
+    totalOrders.textContent = `${orders.length} Orders`;
+    totalEarnings.textContent = `₹${earnings}`;
+    topDish.textContent = Object.entries(dishMap).sort((a,b) => b[1]-a[1])[0][0];
+
+    const ctx = document.getElementById('dishChart');
+    const chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Object.keys(dishMap),
+        datasets: [{
+          label: 'Orders',
+          data: Object.values(dishMap),
+          backgroundColor: '#ff9f43',
+          borderRadius: 6
+        }]
+      },
+      options: {
+        plugins: {
+          legend: { display: false }
+        },
+        scales: {
+          x: {
+            ticks: { color: '#fff' }
+          },
+          y: {
+            beginAtZero: true,
+            ticks: { color: '#fff' }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

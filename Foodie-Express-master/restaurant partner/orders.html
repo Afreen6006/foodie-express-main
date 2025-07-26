@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orders - Restaurant Panel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 40px;
+      background: linear-gradient(to right, #1a1c2e, #4a4065);
+      color: #fff;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffcb6b;
+      margin-bottom: 30px;
+      animation: pulse 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.02); }
+    }
+
+    .orders-container {
+      max-width: 1000px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .order-card {
+      background: rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease;
+    }
+
+    .order-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .order-card h3 {
+      color: #ff9f43;
+      margin-bottom: 12px;
+    }
+
+    .items {
+      margin: 15px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .item-chip {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 14px;
+      color: #f0e9ff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 14px;
+      background-color: #ffd700;
+      color: #1a1a1a;
+    }
+
+    .update-btn {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: linear-gradient(to right, #38a169, #48bb78);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .update-btn:hover {
+      background: linear-gradient(to right, #2f855a, #38a169);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 600px) {
+      .orders-container {
+        padding: 0 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>📦 Orders Dashboard</h1>
+  <div class="orders-container" id="ordersContainer"></div>
+
+  <script>
+    const orders = [
+      {
+        id: 101,
+        items: ["Veg Biryani", "Paneer Tikka"],
+        status: "Preparing"
+      },
+      {
+        id: 102,
+        items: ["Butter Naan", "Dal Fry"],
+        status: "Awaiting Pickup"
+      },
+      {
+        id: 103,
+        items: ["Pizza", "Coke"],
+        status: "Delivered"
+      }
+    ];
+
+    const container = document.getElementById('ordersContainer');
+
+    function renderOrders() {
+      container.innerHTML = '';
+      orders.forEach(order => {
+        const card = document.createElement('div');
+        card.className = 'order-card';
+        card.innerHTML = `
+          <h3>🧾 Order #${order.id}</h3>
+          <div class="items">
+            ${order.items.map(item => `<span class="item-chip">🍽️ ${item}</span>`).join('')}
+          </div>
+          <div class="status">Status: ${order.status}</div>
+          ${order.status !== 'Delivered' ? `<button class="update-btn" onclick="updateStatus(${order.id})">Next Stage</button>` : ''}
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function updateStatus(orderId) {
+      const order = orders.find(o => o.id === orderId);
+      if (order) {
+        const next = {
+          "Preparing": "Awaiting Pickup",
+          "Awaiting Pickup": "Delivered",
+          "Delivered": "Delivered"
+        };
+        order.status = next[order.status];
+        renderOrders();
+      }
+    }
+
+    renderOrders();
+  </script>
+</body>
+</html>

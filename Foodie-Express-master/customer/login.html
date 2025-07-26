@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Foodie Express</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ffcb6b;
+      --secondary: #ff9f43;
+      --accent: #ff5a5f;
+      --bg: linear-gradient(135deg, #1a1c2e 0%, #4a4065 70%);
+      --card-bg: rgba(255, 255, 255, 0.12);
+      --text: #ffffff;
+      --muted: #ddd;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      --border: rgba(255, 255, 255, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    body.login-bg {
+      background: var(--bg); /* Matches payment page background */
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-box {
+      background: var(--card-bg);
+      padding: 2.5rem 2rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      backdrop-filter: blur(12px);
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .login-box h2 {
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+    }
+
+    form label {
+      display: block;
+      text-align: left;
+      margin: 0.75rem 0 0.25rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text);
+      transition: 0.3s ease;
+    }
+
+    input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 5px rgba(255, 203, 107, 0.4);
+    }
+
+    .password-container {
+      position: relative;
+    }
+
+    #togglePassword {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--primary);
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 0.8rem;
+      margin-top: 1.5rem;
+      background: var(--primary);
+      color: #1a1c2e;
+      border: none;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: var(--secondary);
+    }
+
+    .error-msg {
+      color: var(--accent);
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    @media screen and (max-width: 480px) {
+      .login-box {
+        padding: 2rem 1.2rem;
+        border-radius: 16px;
+      }
+
+      .login-box h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body class="login-bg">
+  <div class="login-box">
+    <h2>Login to Foodie Express</h2>
+    <form id="loginForm">
+      <label for="username">Username</label>
+      <input type="text" id="username" required placeholder="e.g. foodie123" />
+
+      <label for="password">Password</label>
+      <div class="password-container">
+        <input type="password" id="password" required placeholder="Enter password" />
+        <button type="button" id="togglePassword" aria-label="Toggle password visibility">Show</button>
+      </div>
+
+      <button type="submit">LOGIN</button>
+    </form>
+    <p id="errorMessage" class="error-msg" aria-live="polite" tabindex="0"></p>
+  </div>
+
+  <script>
+    const usernameInput = document.getElementById("username");
+    const passwordInput = document.getElementById("password");
+    const errorMessage = document.getElementById("errorMessage");
+    const togglePassword = document.getElementById("togglePassword");
+
+    // Clear error message on input
+    [usernameInput, passwordInput].forEach(input => {
+      input.addEventListener("input", () => {
+        errorMessage.textContent = "";
+      });
+    });
+
+    // Toggle password visibility
+    togglePassword.addEventListener("click", () => {
+      const isPassword = passwordInput.type === "password";
+      passwordInput.type = isPassword ? "text" : "password";
+      togglePassword.textContent = isPassword ? "Hide" : "Show";
+    });
+
+    // Form submission handling
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const user = usernameInput.value.trim();
+      const pass = passwordInput.value.trim();
+
+      if (!user || !pass) {
+        errorMessage.textContent = "Please fill in all fields.";
+        return;
+      }
+
+      if (user === "admin" && pass === "1234") {
+        localStorage.setItem("loggedIn", "true");
+        window.location.href = "home.html";
+      } else {
+        errorMessage.textContent = "Invalid username or password!";
+      }
+    });
+  </script>
+</body>
+</html>

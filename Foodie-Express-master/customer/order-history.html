@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order History - Foodie Express</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ffcb6b; /* Warm gold */
+      --secondary: #ff9f43; /* Vibrant orange */
+      --accent: #ff5a5f; /* Red for calls-to-action */
+      --bg: linear-gradient(135deg, #1a1c2e 0%, #4a4065 70%); /* Deeper gradient */
+      --card-bg: rgba(255, 255, 255, 0.12); /* Enhanced glass effect */
+      --text: #ffffff;
+      --muted: #ddd;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      --border: rgba(255, 255, 255, 0.2);
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      margin: 0;
+      padding: 50px 20px;
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--primary);
+      font-size: 40px;
+      font-weight: 700;
+      margin-bottom: 35px;
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      animation: pulse 2s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.02); }
+    }
+
+    .offer-banner {
+      max-width: 900px;
+      margin: 0 auto 30px;
+      background: linear-gradient(90deg, var(--accent), var(--secondary));
+      color: #fff;
+      padding: 15px;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 16px;
+      box-shadow: var(--shadow);
+      animation: slideIn 0.8s ease-out;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(-20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .controls {
+      max-width: 900px;
+      margin: 0 auto 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .controls input,
+    .controls select {
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 16px;
+      width: 48%;
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--text);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .controls input:focus,
+    .controls select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 10px rgba(255, 203, 107, 0.6);
+      outline: none;
+    }
+
+    .loyalty-points {
+      max-width: 900px;
+      margin: 0 auto 30px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      text-align: center;
+      font-size: 16px;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .orders-container {
+      max-width: 900px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .order-card {
+      background: var(--card-bg);
+      box-shadow: var(--shadow);
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .order-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+    }
+
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+      gap: 12px;
+    }
+
+    .restaurant-name {
+      font-size: 22px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--primary);
+    }
+
+    .restaurant-name img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(255, 203, 107, 0.4);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .order-meta {
+      font-size: 14px;
+      color: var(--muted);
+      text-align: right;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 6px 12px;
+      border-radius: 10px;
+    }
+
+    .order-rating {
+      font-size: 14px;
+      color: #ffd700;
+      margin-top: 5px;
+    }
+
+    .order-items {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin: 15px 0 20px;
+      padding: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      border-left: 4px solid var(--primary);
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 8px;
+      transition: transform 0.2s ease;
+    }
+
+    .item:hover {
+      transform: translateX(8px);
+    }
+
+    .item img {
+      width: 70px;
+      height: 70px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .item-name {
+      font-weight: 500;
+      font-size: 16px;
+      color: var(--text);
+    }
+
+    .item .muted {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .order-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      border-top: 1px dashed var(--border);
+      padding-top: 15px;
+      font-size: 16px;
+      gap: 12px;
+    }
+
+    .eta {
+      color: var(--primary);
+      font-weight: 500;
+    }
+
+    .reorder-btn {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      color: #1f1c2c;
+      padding: 12px 22px;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .reorder-btn:hover {
+      background: linear-gradient(90deg, #e0b54a, #e07f2a);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .recommended-section {
+      max-width: 900px;
+      margin: 40px auto 0;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .recommended-section h2 {
+      font-size: 24px;
+      color: var(--primary);
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .recommended-items {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding: 10px 0;
+      scroll-behavior: smooth;
+    }
+
+    .recommended-item {
+      flex: 0 0 auto;
+      width: 180px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 12px;
+      border-radius: 12px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .recommended-item:hover {
+      transform: scale(1.05);
+    }
+
+    .recommended-item img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 8px;
+    }
+
+    .recommended-item p {
+      font-size: 14px;
+      color: var(--text);
+      margin: 5px 0;
+    }
+
+    .recommended-item .price {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .empty-state {
+      text-align: center;
+      margin-top: 80px;
+      color: var(--muted);
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    .empty-state img {
+      width: 200px;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3));
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 600px) {
+      .controls input,
+      .controls select {
+        width: 100%;
+      }
+
+      .order-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .recommended-items {
+        flex-wrap: nowrap;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>🍽️ Your Orders</h1>
+
+<div class="offer-banner">
+  🎉 Get 30% OFF on your next order! Use code <strong>FOODIE30</strong> (Valid till 20th July 2025)
+</div>
+
+<div class="controls">
+  <input type="text" id="searchInput" placeholder="Search restaurant...">
+  <select id="dateFilter">
+    <option value="all">All Orders</option>
+    <option value="last7">Last 7 Days</option>
+  </select>
+</div>
+
+<div class="loyalty-points">
+  🎯 You have <strong>150</strong> Loyalty Points! Redeem now for discounts.
+</div>
+
+<div class="orders-container" id="ordersContainer"></div>
+
+<div class="empty-state" id="emptyState" style="display: none;">
+  <img src="https://cdn-icons-png.flaticon.com/512/4076/4076505.png" alt="No Orders">
+  <p>No matching orders yet.</p>
+</div>
+
+<div class="recommended-section">
+  <h2>Recommended for You</h2>
+  <div class="recommended-items" id="recommendedItems"></div>
+</div>
+
+<script>
+  const orders = JSON.parse(localStorage.getItem("orderHistory") || "[]");
+  const container = document.getElementById("ordersContainer");
+  const emptyState = document.getElementById("emptyState");
+  const searchInput = document.getElementById("searchInput");
+  const dateFilter = document.getElementById("dateFilter");
+  const recommendedItemsContainer = document.getElementById("recommendedItems");
+
+  const foodImages = {
+    "Paneer Butter Masala": "https://i.imgur.com/YV6sJ4n.jpg",
+    "Garlic Naan": "https://i.imgur.com/3xVJ7bi.jpg",
+    "Coke": "https://i.imgur.com/YbBh1ko.jpg",
+    "Idly": "https://i.imgur.com/4rmwPXA.jpg",
+    "Dosa": "https://i.imgur.com/nBVKFpo.jpg",
+    "Biryani": "https://i.imgur.com/XZJmVtC.jpg",
+    "Burger": "https://i.imgur.com/7nFtDfL.jpg",
+    "Chicken Tikka": "https://i.imgur.com/5kZ6L9D.jpg",
+    "Mango Lassi": "https://i.imgur.com/ZqQ8p1K.jpg"
+  };
+
+  const recommendedItems = [
+    { name: "Chicken Tikka", price: 250, image: "https://i.imgur.com/5kZ6L9D.jpg" },
+    { name: "Mango Lassi", price: 80, image: "https://i.imgur.com/ZqQ8p1K.jpg" },
+    { name: "Veg Biryani", price: 180, image: "https://i.imgur.com/XZJmVtC.jpg" },
+    { name: "Paneer Tikka", price: 200, image: "https://i.imgur.com/9xQfJ7m.jpg" }
+  ];
+
+  const isWithinLast7Days = dateStr => {
+    const orderDate = new Date(dateStr);
+    const now = new Date();
+    return (now - orderDate) / (1000 * 60 * 60 * 24) <= 7;
+  };
+
+  const renderOrders = () => {
+    container.innerHTML = '';
+    emptyState.style.display = 'none';
+
+    const searchTerm = searchInput.value.toLowerCase();
+    const filterOption = dateFilter.value;
+
+    const filtered = orders.filter(order => {
+      const rest = order.items[0]?.restaurant || '';
+      const matchesSearch = rest.toLowerCase().includes(searchTerm);
+      const matchesDate = filterOption === 'all' || isWithinLast7Days(order.date);
+      return matchesSearch && matchesDate;
+    });
+
+    if (filtered.length === 0) {
+      emptyState.style.display = 'block';
+      return;
+    }
+
+    filtered.reverse().forEach(order => {
+      const rest = order.items[0]?.restaurant || 'Unknown';
+      const date = order.date;
+      const eta = order.eta;
+      const status = "Delivered";
+      const total = order.items.reduce((sum, item) => sum + (item.price || 0) * item.quantity, 0);
+      const rating = (Math.random() * (4.8 - 4.2) + 4.2).toFixed(1); // Random rating 4.2-4.8
+
+      const itemsHtml = order.items.map(item => `
+        <div class="item">
+          <img src="${foodImages[item.name] || 'https://i.imgur.com/4rmwPXA.jpg'}" alt="${item.name}" onerror="this.src='https://i.imgur.com/4rmwPXA.jpg';">
+          <div>
+            <div class="item-name">${item.name}</div>
+            <div class="muted">x${item.quantity}</div>
+          </div>
+        </div>
+      `).join("");
+
+      const card = document.createElement('div');
+      card.className = 'order-card';
+      card.innerHTML = `
+        <div class="order-header">
+          <div class="restaurant-name">
+            <img src="https://i.imgur.com/NG9V2kZ.png" alt="${rest} Logo" onerror="this.src='https://i.imgur.com/NG9V2kZ.png';">
+            ${rest}
+          </div>
+          <div class="order-meta">${date} | ${status}</div>
+        </div>
+        <div class="order-items">${itemsHtml}</div>
+        <div class="order-footer">
+          <div>
+            <span class="eta">ETA: ${eta}</span> • ₹${total} <div class="order-rating">⭐ ${rating}</div>
+          </div>
+          <button class="reorder-btn">Reorder</button>
+        </div>
+      `;
+
+      card.querySelector('.reorder-btn').addEventListener('click', () => {
+        localStorage.setItem("cart", JSON.stringify(order.items));
+        alert("Items added to cart! Redirecting to cart...");
+        window.location.href = "cart.html";
+      });
+
+      container.appendChild(card);
+    });
+  };
+
+  const renderRecommendedItems = () => {
+    recommendedItemsContainer.innerHTML = '';
+    recommendedItems.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'recommended-item';
+      card.innerHTML = `
+        <img src="${item.image}" alt="${item.name}" onerror="this.src='https://i.imgur.com/4rmwPXA.jpg';">
+        <p>${item.name}</p>
+        <p class="price">₹${item.price}</p>
+      `;
+      recommendedItemsContainer.appendChild(card);
+    });
+  };
+
+  searchInput.addEventListener('input', renderOrders);
+  dateFilter.addEventListener('change', renderOrders);
+  renderOrders();
+  renderRecommendedItems();
+</script>
+
+</body>
+</html>

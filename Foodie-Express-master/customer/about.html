@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About - Foodie Express</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ffcb6b;
+      --secondary: #ff9f43;
+      --accent: #ff5a5f;
+      --bg: linear-gradient(135deg, #1a1c2e 0%, #4a4065 70%);
+      --card-bg: rgba(255, 255, 255, 0.12);
+      --text: #ffffff;
+      --muted: #ddd;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      --border: rgba(255, 255, 255, 0.2);
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      background-color: #1a1c2e;
+      margin: 0;
+      padding: 0;
+      color: var(--text);
+      min-height: 100vh;
+      background-image: radial-gradient(circle at 20% 20%, rgba(74, 64, 101, 0.1) 0%, transparent 50%);
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: linear-gradient(90deg, #1a1c2e, #4a4065);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow);
+      z-index: 1000;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+    }
+
+    .logo span {
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 25px;
+      padding: 10px 20px;
+      flex: 0.7;
+      overflow-x: auto;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 500;
+      transition: color 0.3s ease;
+      padding: 8px 12px;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--secondary);
+    }
+
+    .about-section {
+      max-width: 1000px;
+      margin: 100px auto 40px;
+      padding: 30px;
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .about-section h1 {
+      font-size: 32px;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+
+    .about-section p {
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+ .footer {
+      background: linear-gradient(135deg, #1a1c2e 0%, #3c314c 100%);
+      padding: 60px 30px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-top: 2px solid var(--primary);
+    }
+
+    .footer-column {
+      flex: 1;
+      min-width: 200px;
+      margin-bottom: 20px;
+    }
+
+    .footer-column h3 {
+      color: var(--primary);
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .footer-column a {
+      display: block;
+      color: var(--muted);
+      text-decoration: none;
+      margin: 6px 0;
+      transition: color 0.3s ease;
+    }
+
+    .footer-column a:hover {
+      color: var(--secondary);
+    }
+
+    .footer-bottom {
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
+      color: var(--muted);
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <img src="logo.png.jpg" alt="Foodie Express Logo" />
+      <span>Foodie Express</span>
+    </div>
+    <div class="nav-links">
+      <a href="home.html">🏠 Home</a>
+      <a href="cart.html">🛒 Cart</a>
+      <a href="order-history.html">📜 Order History</a>
+      <a href="contact.html">📞 Contact Us</a>
+    </div>
+  </header>
+
+  <section class="about-section">
+    <h1>About Foodie Express</h1>
+    <p>
+      Welcome to Foodie Express! We are committed to delivering delicious food from the best restaurants in your city, right to your doorstep.<br><br>
+      Founded in 2025, Foodie Express was born out of a passion for food and technology. We aim to bridge the gap between local eateries and customers using seamless delivery services.<br><br>
+      Whether you're craving biryani, pizza, or homely meals, Foodie Express makes ordering food a breeze. Thank you for choosing us!
+    </p>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-column">
+      <h3>Company</h3>
+      <a href="about.html">About Us</a>
+      <a href="careers.html">Careers</a>
+      <a href="team.html">Team</a>
+    </div>
+    <div class="footer-column">
+      <h3>Contact</h3>
+      <a href="contact.html">Contact Us</a>
+      <a href="help.html">Help</a>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Foodie Express. All rights reserved.
+    </div>
+  </footer>
+</body>
+</html>

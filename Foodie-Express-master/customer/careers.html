@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partner with Us - Foodie Express</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ffcb6b;
+      --secondary: #ff9f43;
+      --accent: #ff5a5f;
+      --bg: linear-gradient(135deg, #1a1c2e 0%, #4a4065 70%);
+      --card-bg: rgba(255, 255, 255, 0.12);
+      --text: #ffffff;
+      --muted: #ddd;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      --border: rgba(255, 255, 255, 0.2);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 30px;
+    }
+
+    .partner-container {
+      max-width: 720px;
+      width: 100%;
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 50px;
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      text-align: center;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 25px;
+      color: var(--primary);
+    }
+
+    p {
+      font-size: 17px;
+      margin-bottom: 25px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .highlight {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .partner-email {
+      font-size: 18px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 14px 22px;
+      border-radius: 12px;
+      color: var(--accent);
+      font-weight: 600;
+      display: inline-block;
+      user-select: all;
+    }
+
+    .join-btn, .message-btn {
+      margin-top: 30px;
+      padding: 14px 28px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      color: #1a1c2e;
+      font-weight: 600;
+      font-size: 16px;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+      margin-right: 15px;
+    }
+
+    .join-btn:hover, .message-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    }
+
+    @media (max-width: 600px) {
+      .partner-container {
+        padding: 30px 20px;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="partner-container">
+    <h1>Partner with Foodie Express</h1>
+    <p>
+      Are you ready to take your food business to the next level? <span class="highlight">Join our movement</span> to bring delicious moments to millions across India. Whether you're a cozy local café or a booming cloud kitchen, we are here to empower your growth.
+    </p>
+    <p>
+      As a Foodie Express partner, you'll gain access to powerful tools, passionate support, and an ever-hungry customer base ready to explore your culinary magic.
+    </p>
+    <div class="partner-email">📧 partner@foodieexpress.com</div>
+    <br>
+    <button class="join-btn" onclick="alert('Thank you for your interest! Our team will reach out shortly.')">Become a Partner</button>
+    <button class="message-btn" onclick="alert('Let’s connect! We love hearing from potential partners.')">Send a Message</button>
+  </div>
+</body>
+</html>

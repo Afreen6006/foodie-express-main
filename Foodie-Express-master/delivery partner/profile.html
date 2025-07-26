@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delivery Partner Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f0f4f8 0%, #d9e4f5 100%);
+      color: #1a202c;
+    }
+    .container {
+      display: flex;
+    }
+    .sidebar {
+      width: 240px;
+      background: linear-gradient(180deg, #2d3748 0%, #4a5568 100%);
+      height: 100vh;
+      padding: 20px;
+      box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+    }
+    .sidebar .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    .sidebar .logo img {
+      height: 36px;
+      border-radius: 50%;
+      
+    }
+    .sidebar .logo h1 {
+      font-size: 1.2rem;
+      color: #edf2f7;
+    }
+    .sidebar nav a {
+      display: block;
+      color: #a0aec0;
+      text-decoration: none;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+    .sidebar nav a:hover,
+    .sidebar nav a.active {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #48bb78;
+    }
+    .main {
+      flex: 1;
+      padding: 40px;
+    }
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .profile-header img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #48bb78;
+    }
+    .profile-header h2 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+    .profile-section {
+      background: #fff;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      max-width: 600px;
+    }
+    .profile-section h3 {
+      margin-bottom: 20px;
+      color: #2d3748;
+    }
+    .profile-detail {
+      margin-bottom: 15px;
+    }
+    .profile-detail strong {
+      display: inline-block;
+      width: 140px;
+      color: #4a5568;
+    }
+    .profile-detail input {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #cbd5e0;
+      font-size: 14px;
+      width: calc(100% - 160px);
+    }
+    .btn-group {
+      margin-top: 20px;
+    }
+    .btn-group button {
+      background-color: #48bb78;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      margin-right: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    .btn-group button:hover {
+      background-color: #38a169;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="logo1.jpg" alt="Logo">
+        <h1>Foodie Express</h1>
+      </div>
+      <nav>
+        <a href="home.html">Home</a>
+        <a href="order-history.html">Order History</a>
+        <a href="earnings.html">Earnings</a>
+        <a href="deliverypartner.html">Delivery Panel</a>
+        <a href="profile.html" class="active">Profile</a>
+        <a href="cart.html">Assigned Cart</a>
+      </nav>
+    </aside>
+    <main class="main">
+      <div class="profile-header">
+        <img src="images.png" alt="Profile Photo">
+        <div>
+          <h2 id="partnerName">John Doe</h2>
+          <p style="color: #4a5568; font-weight: 500;">Delivery Executive • ID: DPX1023</p>
+        </div>
+      </div>
+      <div class="profile-section">
+        <h3>Partner Information</h3>
+        <div class="profile-detail"><strong>Email:</strong> <input id="email" /></div>
+        <div class="profile-detail"><strong>Phone:</strong> <input id="phone" /></div>
+        <div class="profile-detail"><strong>Vehicle Type:</strong> <input id="vehicle" /></div>
+        <div class="profile-detail"><strong>License No:</strong> <input id="license" /></div>
+        <div class="profile-detail"><strong>Joining Date:</strong> <input id="joinDate" /></div>
+        <div class="profile-detail"><strong>Address:</strong> <input id="address" /></div>
+        <div class="btn-group">
+          <button onclick="saveProfile()">Save</button>
+          <button onclick="resetProfile()">Reset</button>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script>
+    const defaultProfile = {
+      name: "John Doe",
+      email: "johndoe@foodie.com",
+      phone: "+91 9876543210",
+      vehicle: "Bike",
+      license: "MP123456789",
+      joinDate: "Jan 15, 2024",
+      address: "Chhindwara, Madhya Pradesh"
+    };
+
+    function loadProfile() {
+      const profile = JSON.parse(localStorage.getItem("deliveryProfile")) || defaultProfile;
+      document.getElementById("partnerName").textContent = profile.name;
+      document.getElementById("email").value = profile.email;
+      document.getElementById("phone").value = profile.phone;
+      document.getElementById("vehicle").value = profile.vehicle;
+      document.getElementById("license").value = profile.license;
+      document.getElementById("joinDate").value = profile.joinDate;
+      document.getElementById("address").value = profile.address;
+    }
+
+    function saveProfile() {
+      const updatedProfile = {
+        name: document.getElementById("partnerName").textContent,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        vehicle: document.getElementById("vehicle").value,
+        license: document.getElementById("license").value,
+        joinDate: document.getElementById("joinDate").value,
+        address: document.getElementById("address").value
+      };
+      localStorage.setItem("deliveryProfile", JSON.stringify(updatedProfile));
+      alert("Profile saved successfully!");
+    }
+
+    function resetProfile() {
+      localStorage.removeItem("deliveryProfile");
+      loadProfile();
+    }
+
+    loadProfile();
+  </script>
+</body>
+</html>

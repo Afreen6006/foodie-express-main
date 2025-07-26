@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Foodie Express</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ffcb6b;
+      --secondary: #ff9f43;
+      --accent: #ff5a5f;
+      --bg: linear-gradient(135deg, #1a1c2e 0%, #4a4065 70%);
+      --card-bg: rgba(255, 255, 255, 0.12);
+      --text: #ffffff;
+      --muted: #ddd;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      --border: rgba(255, 255, 255, 0.2);
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      background-color: #1a1c2e;
+      margin: 0;
+      padding: 0;
+      color: var(--text);
+      background-image: radial-gradient(circle at 20% 20%, rgba(74, 64, 101, 0.1) 0%, transparent 50%);
+    }
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      background: linear-gradient(90deg, #1a1c2e, #4a4065);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      box-shadow: var(--shadow);
+      z-index: 1000;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 24px;
+      color: var(--primary);
+      font-weight: 600;
+      gap: 10px;
+    }
+
+    .logo-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    .nav-options {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .nav-options span {
+      color: var(--primary);
+      cursor: pointer;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-options span:hover {
+      color: var(--secondary);
+    }
+
+    .content-section {
+      max-width: 700px;
+      margin: 100px auto;
+      padding: 40px;
+      background: var(--card-bg);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .content-section h1 {
+      font-size: 36px;
+      color: var(--primary);
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .content-section p {
+      text-align: center;
+      color: var(--muted);
+      margin-bottom: 30px;
+      font-size: 18px;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-form label {
+      font-weight: 500;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .contact-form button {
+      padding: 14px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border: none;
+      border-radius: 14px;
+      color: #1a1c2e;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .contact-form button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+    }
+
+    footer {
+      background: #1a1c2e;
+      padding: 40px 20px 20px;
+      color: var(--muted);
+      border-top: 2px solid var(--primary);
+      text-align: center;
+    }
+
+    .footer-container {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .footer-container div {
+      text-align: left;
+    }
+
+    .footer-container h3 {
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .footer-container p {
+      margin: 6px 0;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .footer-container p:hover {
+      color: var(--secondary);
+    }
+
+    .copyright {
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="logo.png.jpg" alt="Foodie Express Logo" class="logo-img"> Foodie Express
+    </div>
+    <div class="nav-options">
+      <span onclick="window.location.href='index.html'">🏠 Home</span>
+      <span onclick="window.location.href='cart.html'">🛒 Cart</span>
+      <span onclick="window.location.href='order-history.html'">📜 Order History</span>
+      <span onclick="window.location.href='about.html'">ℹ️ About Us</span>
+    </div>
+  </nav>
+
+  <section class="content-section">
+    <h1>Contact Us</h1>
+    <p>Have a question, suggestion, or feedback? We'd love to hear from you!</p>
+    <form class="contact-form" onsubmit="submitContactForm(event)">
+      <label for="name">Name</label>
+      <input type="text" id="name" placeholder="Your Name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Your Email" required>
+
+      <label for="message">Message</label>
+      <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div>
+        <h3>Company</h3>
+        <p onclick="window.location.href='about.html'">About Us</p>
+        <p onclick="window.location.href='careers.html'">Careers</p>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <p onclick="window.location.href='contact.html'">Contact Us</p>
+        <p onclick="window.location.href='help.html'">Help</p>
+      </div>
+    </div>
+    <p class="copyright">© 2025 Foodie Express. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function submitContactForm(event) {
+      event.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      if (!name || !email || !message) {
+        alert("Please fill out all fields.");
+        return;
+      }
+
+      alert("Thank you, " + name + "! Your message has been sent.");
+      document.querySelector(".contact-form").reset();
+    }
+  </script>
+</body>
+</html>

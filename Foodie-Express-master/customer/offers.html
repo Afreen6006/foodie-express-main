@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Offers - Foodie Express</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ffcb6b; /* Warm gold */
+      --secondary: #ff9f43; /* Vibrant orange */
+      --accent: #ff5a5f; /* Red for calls-to-action */
+      --bg: linear-gradient(135deg, #1a1c2e 0%, #4a4065 70%); /* Dark gradient */
+      --card-bg: rgba(255, 255, 255, 0.12); /* Enhanced glass effect */
+      --text: #ffffff;
+      --muted: #ddd;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      --border: rgba(255, 255, 255, 0.2);
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg); /* Explicitly set gradient */
+      background-color: #1a1c2e; /* Fallback color */
+      margin: 0;
+      padding: 50px 20px;
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      /* Subtle pattern overlay to prevent solid color issues */
+      background-image: radial-gradient(circle at 20% 20%, rgba(74, 64, 101, 0.1) 0%, transparent 50%);
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--primary);
+      font-size: 40px;
+      font-weight: 700;
+      margin-bottom: 35px;
+      text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .offer-input-section {
+      max-width: 900px;
+      margin: 0 auto 30px;
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      text-align: center;
+    }
+
+    .offer-input-section h2 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: var(--primary);
+    }
+
+    .offer-input {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .offer-input input {
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 16px;
+      width: 60%;
+      max-width: 300px;
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--text);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .offer-input input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 10px rgba(255, 203, 107, 0.6);
+      outline: none;
+    }
+
+    .offer-input button {
+      padding: 14px 22px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      color: #1f1c2c;
+      border: none;
+      border-radius: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .offer-input button:hover {
+      background: linear-gradient(90deg, #e0b54a, #e07f2a);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .message {
+      margin-top: 15px;
+      font-size: 14px;
+      display: none;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    .message.success {
+      color: var(--primary);
+    }
+
+    .message.error {
+      color: var(--accent);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .offers-container {
+      max-width: 900px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .offer-card {
+      background: var(--card-bg);
+      box-shadow: var(--shadow);
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid var(--border);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .offer-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+    }
+
+    .offer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+      gap: 10px;
+    }
+
+    .offer-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .offer-expiry {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .offer-details {
+      font-size: 16px;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .offer-code {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-weight: 500;
+      color: var(--accent);
+      display: inline-block;
+    }
+
+    .apply-btn {
+      padding: 10px 18px;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .apply-btn:hover {
+      background: #e2474c;
+      transform: translateY(-2px);
+    }
+
+    .empty-state {
+      text-align: center;
+      margin-top: 80px;
+      color: var(--muted);
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    .empty-state img {
+      width: 200px;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3));
+    }
+
+    @media (max-width: 600px) {
+      .offer-input {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .offer-input input {
+        width: 100%;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>🎉 Offers</h1>
+
+<div class="offer-input-section">
+  <h2>Apply an Offer Code</h2>
+  <div class="offer-input">
+    <input type="text" id="offerCodeInput" placeholder="Enter offer code" maxlength="10">
+    <button onclick="applyOfferCode()">Apply</button>
+  </div>
+  <div id="message" class="message"></div>
+</div>
+
+<div class="offers-container" id="offersContainer"></div>
+
+<div class="empty-state" id="emptyState" style="display: none;">
+  <img src="https://cdn-icons-png.flaticon.com/512/4076/4076505.png" alt="No Offers">
+  <p>No active offers available.</p>
+</div>
+
+<script>
+  const offersContainer = document.getElementById("offersContainer");
+  const emptyState = document.getElementById("emptyState");
+  const offerCodeInput = document.getElementById("offerCodeInput");
+  const message = document.getElementById("message");
+
+  const offers = [
+    {
+      title: "Flat 30% OFF",
+      details: "On orders above ₹299",
+      code: "FOODIE30",
+      expiry: "20th July 2025, 11:59 PM IST"
+    },
+    {
+      title: "Buy 1 Get 1 Free",
+      details: "On selected desserts",
+      code: "SWEETDEAL",
+      expiry: "18th July 2025, 11:59 PM IST"
+    },
+    {
+      title: "₹100 OFF",
+      details: "On orders above ₹499",
+      code: "SAVE100",
+      expiry: "22nd July 2025, 11:59 PM IST"
+    }
+  ];
+
+  const applyOfferCode = () => {
+    const code = offerCodeInput.value.trim().toUpperCase();
+    const offer = offers.find(o => o.code === code);
+
+    if (offer) {
+      message.className = "message success";
+      message.textContent = `Success! ${offer.title} applied. Valid till ${offer.expiry}.`;
+      message.style.display = "block";
+      offerCodeInput.value = "";
+      setTimeout(() => (message.style.display = "none"), 5000);
+    } else {
+      message.className = "message error";
+      message.textContent = "Invalid offer code. Please try again.";
+      message.style.display = "block";
+      setTimeout(() => (message.style.display = "none"), 5000);
+    }
+  };
+
+  const renderOffers = () => {
+    offersContainer.innerHTML = "";
+    emptyState.style.display = "none";
+
+    if (offers.length === 0) {
+      emptyState.style.display = "block";
+      return;
+    }
+
+    offers.forEach(offer => {
+      const card = document.createElement("div");
+      card.className = "offer-card";
+      card.innerHTML = `
+        <div class="offer-header">
+          <div class="offer-title">${offer.title}</div>
+          <div class="offer-expiry">Expires: ${offer.expiry}</div>
+        </div>
+        <div class="offer-details">${offer.details}</div>
+        <div class="offer-code">Code: ${offer.code}</div>
+        <button class="apply-btn" onclick="applyOfferCodeFromCard('${offer.code}')">Apply Now</button>
+      `;
+      offersContainer.appendChild(card);
+    });
+  };
+
+  const applyOfferCodeFromCard = (code) => {
+    offerCodeInput.value = code;
+    applyOfferCode();
+  };
+
+  offerCodeInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") applyOfferCode();
+  });
+
+  renderOffers();
+</script>
+
+</body>
+</html>

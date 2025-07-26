@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Profile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #1a1c2e, #4a4065);
+      color: #fff;
+      margin: 0;
+      padding: 40px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffcb6b;
+      margin-bottom: 40px;
+    }
+
+    .profile-container {
+      max-width: 800px;
+      background: rgba(255,255,255,0.1);
+      padding: 30px;
+      border-radius: 16px;
+      margin: auto;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px);
+    }
+
+    .profile-photo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .profile-photo img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #ffcb6b;
+    }
+
+    .info-group {
+      margin-bottom: 20px;
+    }
+
+    .info-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #ffcb6b;
+    }
+
+    .info-group input,
+    .info-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .info-group input:focus,
+    .info-group textarea:focus {
+      box-shadow: 0 0 0 2px #ffcb6b;
+    }
+
+    .save-btn {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(to right, #ff9f43, #ffcb6b);
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .save-btn:hover {
+      background: linear-gradient(to right, #ffb347, #ffe08a);
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <h1>🍽️ Restaurant Profile</h1>
+
+  <div class="profile-container">
+    <div class="profile-photo">
+      <img src="images.png" alt="Restaurant Logo">
+    </div>
+
+    <div class="info-group">
+      <label for="name">Restaurant Name</label>
+      <input type="text" id="name" value="Foodie Express">
+    </div>
+
+    <div class="info-group">
+      <label for="owner">Owner Name</label>
+      <input type="text" id="owner" value="Gunarekha">
+    </div>
+
+    <div class="info-group">
+      <label for="address">Address</label>
+      <textarea id="address" rows="3">123, Main Street, Chhindwara</textarea>
+    </div>
+
+    <div class="info-group">
+      <label for="phone">Phone Number</label>
+      <input type="text" id="phone" value="+91 9876543210">
+    </div>
+
+    <div class="info-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" value="foodie@express.com">
+    </div>
+
+    <div class="info-group">
+      <label for="description">Description</label>
+      <textarea id="description" rows="3">Serving delicious dishes since 2024. Specializing in Indian and fusion cuisine.</textarea>
+    </div>
+
+    <button class="save-btn">Save Changes</button>
+  </div>
+</body>
+</html>

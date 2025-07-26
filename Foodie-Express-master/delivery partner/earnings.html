@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delivery Partner Earnings - Foodie Express</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f0f4f8 0%, #d9e4f5 100%);
+      color: #1a202c;
+    }
+
+    .container {
+      display: flex;
+    }
+
+    .sidebar {
+      width: 240px;
+      background: linear-gradient(180deg, #2d3748 0%, #4a5568 100%);
+      height: 100vh;
+      padding: 20px;
+      box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .sidebar .logo img {
+      height: 36px;
+      border-radius: 50%;
+      filter: brightness(0) invert(1);
+    }
+
+    .sidebar .logo h1 {
+      font-size: 1.2rem;
+      color: #edf2f7;
+    }
+
+    .sidebar nav a {
+      display: block;
+      color: #a0aec0;
+      text-decoration: none;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    .sidebar nav a:hover,
+    .sidebar nav a.active {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #48bb78;
+    }
+
+    .main {
+      flex: 1;
+      padding: 40px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .summary {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .summary-card {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      flex: 1;
+      min-width: 250px;
+      transition: transform 0.3s;
+    }
+
+    .summary-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .summary-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+    }
+
+    .summary-card p {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #2f855a;
+    }
+
+    .history {
+      margin-top: 40px;
+    }
+
+    .history h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+
+    .history table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #ffffff;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .history th, .history td {
+      padding: 14px 20px;
+      text-align: left;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .history th {
+      background-color: #edf2f7;
+    }
+
+    .history tr:hover {
+      background-color: #f7fafc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="logo1.jpg" alt="Logo">
+        <h1>Foodie Express</h1>
+      </div>
+      <nav>
+        <a href="home.html">Home</a>
+        <a href="order-history.html">Order History</a>
+        <a href="earnings.html">Earnings</a>
+        <a href="deliverypartner.html">Delivery Panel</a>
+      </nav>
+    </aside>
+    <main class="main">
+      <h2>Delivery Partner Earnings</h2>
+      <div class="summary">
+        <div class="summary-card">
+          <h3>Total Earnings</h3>
+          <p>₹1,24,500</p>
+        </div>
+        <div class="summary-card">
+          <h3>This Month</h3>
+          <p>₹17,300</p>
+        </div>
+        <div class="summary-card">
+          <h3>Deliveries</h3>
+          <p>453</p>
+        </div>
+      </div>
+
+      <div class="history">
+        <h3>Earning History</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Order ID</th>
+              <th>Amount</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>15 July 2025</td>
+              <td>#FDX1023</td>
+              <td>₹250</td>
+              <td>Completed</td>
+            </tr>
+            <tr>
+              <td>14 July 2025</td>
+              <td>#FDX1022</td>
+              <td>₹250</td>
+              <td>Completed</td>
+            </tr>
+            <tr>
+              <td>13 July 2025</td>
+              <td>#FDX1021</td>
+              <td>₹250</td>
+              <td>Completed</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

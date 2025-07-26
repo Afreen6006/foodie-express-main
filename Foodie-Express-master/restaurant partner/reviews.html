@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Customer Reviews - Foodie Express</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 40px;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #1a1c2e, #4a4065);
+      color: #fff;
+    }
+
+    h1 {
+      text-align: center;
+      color: #ffcb6b;
+      margin-bottom: 30px;
+    }
+
+    .review-container {
+      max-width: 900px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .review-card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 14px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      backdrop-filter: blur(8px);
+      transition: transform 0.3s ease;
+    }
+
+    .review-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .reviewer {
+      font-weight: 600;
+      color: #ffcb6b;
+    }
+
+    .stars {
+      color: #ffd700;
+      font-size: 1.2rem;
+    }
+
+    .comment {
+      margin-top: 10px;
+      font-size: 0.95rem;
+      color: #ddd;
+    }
+
+    .date {
+      text-align: right;
+      font-size: 0.8rem;
+      color: #aaa;
+      margin-top: 8px;
+    }
+
+    .respond-btn {
+      margin-top: 12px;
+      padding: 8px 14px;
+      background: linear-gradient(to right, #ff9f43, #ffcb6b);
+      border: none;
+      color: #1a1a1a;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .respond-btn:hover {
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <h1>🌟 Customer Reviews</h1>
+  <div class="review-container">
+    <div class="review-card">
+      <div class="review-header">
+        <div class="reviewer">Amit Sharma</div>
+        <div class="stars">★★★★★</div>
+      </div>
+      <div class="comment">The food was absolutely delicious and delivery was quick! Highly recommend.</div>
+      <div class="date">14 July 2025</div>
+      <button class="respond-btn">Respond</button>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header">
+        <div class="reviewer">Neha Verma</div>
+        <div class="stars">★★★★☆</div>
+      </div>
+      <div class="comment">Loved the paneer tikka! Packaging could be improved.</div>
+      <div class="date">13 July 2025</div>
+      <button class="respond-btn">Respond</button>
+    </div>
+
+    <div class="review-card">
+      <div class="review-header">
+        <div class="reviewer">Rahul Singh</div>
+        <div class="stars">★★★☆☆</div>
+      </div>
+      <div class="comment">Food was okay, but delivery took too long.</div>
+      <div class="date">11 July 2025</div>
+      <button class="respond-btn">Respond</button>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Live Delivery Tracking</title>
+    <style>
+      #map {
+        height: 500px;
+        width: 100%;
+      }
+    </style>
+    <script>
+      let map;
+      let marker;
+
+      function initMap() {
+        const defaultPos = { lat: 17.3850, lng: 78.4867 }; // Hyderabad
+
+        map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 15,
+          center: defaultPos,
+        });
+
+        marker = new google.maps.Marker({
+          position: defaultPos,
+          map: map,
+          title: "Delivery Location",
+        });
+
+        startTracking();
+      }
+
+      function startTracking() {
+        if (navigator.geolocation) {
+          navigator.geolocation.watchPosition(updateLocation, handleError, {
+            enableHighAccuracy: true,
+          });
+        } else {
+          alert("Geolocation not supported.");
+        }
+      }
+
+      function updateLocation(position) {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+
+        const newPos = { lat, lng };
+        marker.setPosition(newPos);
+        map.setCenter(newPos);
+
+        // Send location to backend
+        fetch("http://localhost:8080/api/location", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ latitude: lat, longitude: lng })
+        })
+        .then(res => res.text())
+        .then(data => console.log("Location updated: ", data))
+        .catch(err => console.error("Failed to send location", err));
+      }
+
+      function handleError(error) {
+        console.warn("Error getting location: ", error.message);
+      }
+    </script>
+  </head>
+  <body>
+    <h2>Delivery Boy Live Location</h2>
+    <div id="map"></div>
+
+    <!-- Replace YOUR_API_KEY with your actual Google Maps API key -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
+      async defer></script>
+  </body>
+</html>

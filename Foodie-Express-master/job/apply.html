@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Apply for a Role - Foodie Express Careers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #1a1c2e, #4a4065);
+      color: #fff;
+      padding: 60px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .apply-box {
+      background: rgba(255,255,255,0.06);
+      padding: 40px;
+      border-radius: 16px;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      backdrop-filter: blur(12px);
+      position: relative;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      text-align: center;
+      color: #ffcb6b;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      font-size: 15px;
+      transition: box-shadow 0.3s ease, background 0.3s ease;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      background: rgba(255,255,255,0.2);
+      box-shadow: 0 0 10px rgba(255, 203, 107, 0.6);
+    }
+
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='20,50 70,100 120,50' stroke='white' stroke-width='20' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 16px;
+      padding-right: 36px;
+      color: #fff;
+    }
+
+    select option {
+      background-color: #2e2f4e;
+      color: #fff;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    input[type="file"] {
+      background: transparent;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      background: linear-gradient(to right, #ff9f43, #ffcb6b);
+      color: #1a1c2e;
+      font-weight: 600;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(255, 203, 107, 0.3);
+    }
+
+    .success-msg {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #48bb78;
+      padding: 15px 25px;
+      color: #fff;
+      font-weight: 600;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+      z-index: 1000;
+      animation: dropIn 0.4s ease;
+    }
+
+    @keyframes dropIn {
+      from { transform: translateX(-50%) translateY(-20px); opacity: 0; }
+      to { transform: translateX(-50%) translateY(0); opacity: 1; }
+    }
+
+    .view-applications {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .view-applications a {
+      color: #ffcb6b;
+      font-weight: 600;
+      text-decoration: none;
+      background: rgba(255,255,255,0.1);
+      padding: 10px 18px;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+    }
+
+    .view-applications a:hover {
+      background: rgba(255,255,255,0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="apply-box">
+    <h2>📄 Apply to Join Our Team</h2>
+    <form id="careerForm" onsubmit="return submitApplication()">
+      <label for="fullname">Full Name</label>
+      <input type="text" id="fullname" required placeholder="John Doe" />
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" required placeholder="you@example.com" />
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" required placeholder="+91 9876543210" />
+
+      <label for="role">Applying for</label>
+      <select id="role" required>
+        <option value="">⬇ Select Role</option>
+        <option>Delivery Executive</option>
+        <option>Restaurant Staff</option>
+        <option>Customer Support</option>
+        <option>Operations Intern</option>
+      </select>
+
+      <label for="message">Why do you want this job?</label>
+      <textarea id="message" required placeholder="Write a short message..."></textarea>
+
+      <label for="resume">Upload Resume (Optional)</label>
+      <input type="file" id="resume" />
+
+      <button type="submit">Submit Application</button>
+    </form>
+    
+  </div>
+
+  <div class="success-msg" id="successMsg">🎉 Congratulations! Your application has been submitted.</div>
+
+  <script>
+    function submitApplication() {
+      const name = document.getElementById('fullname').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const role = document.getElementById('role').value;
+      const message = document.getElementById('message').value.trim();
+
+      const data = {
+        name, email, phone, role, message, date: new Date().toLocaleString()
+      };
+
+      const applications = JSON.parse(localStorage.getItem('careerApplications') || '[]');
+      applications.push(data);
+      localStorage.setItem('careerApplications', JSON.stringify(applications));
+
+      document.getElementById('careerForm').reset();
+      const msg = document.getElementById('successMsg');
+      msg.style.display = 'block';
+
+      setTimeout(() => {
+        msg.style.display = 'none';
+      }, 4000);
+
+      return false;
+    }
+  </script>
+</body>
+</html>
